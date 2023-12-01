@@ -33,10 +33,12 @@ const Button = forwardRef<CustomButtonProps, "button">(
         },
       },
       secondary: {
-        bg: "secondary",
-        color: "primary",
+        bg: "_white",
+        color: "_black",
         variant: "solid",
         fontWeight: "medium",
+        border: "1px solid",
+        borderColor: "_lightgray",
         _hover: {
           filter: "brightness(102%)",
         },
@@ -63,6 +65,7 @@ const Button = forwardRef<CustomButtonProps, "button">(
         {...(secondary && styles.secondary)}
         {...(asLink && styles.asLink)}
         {...rest}
+        borderRadius={"3xl"}
       >
         {children}
       </ChakraButton>

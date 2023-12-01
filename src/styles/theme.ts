@@ -26,7 +26,7 @@ const theme = {
     },
   },
   breakpoints: {
-    md: "62em",
+    md: "50em",
   },
   shadows: {
     outline: `0 0 0 2px ${SECONDARY_COLOR}`,
