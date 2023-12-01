@@ -40,7 +40,8 @@ const Button = forwardRef<CustomButtonProps, "button">(
         border: "1px solid",
         borderColor: "_lightgray",
         _hover: {
-          filter: "brightness(102%)",
+          border: "1px solid ",
+          borderColor: "_gray",
         },
         _active: {
           filter: "brightness(101%)",

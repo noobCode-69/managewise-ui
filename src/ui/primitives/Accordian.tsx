@@ -1,17 +1,16 @@
 import {
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
   AccordionPanel,
   AccordionProps,
-  Box,
   Accordion as ChakraAccordion,
   VStack,
   AccordionItemProps,
   AccordionButtonProps,
+  Spacer,
 } from "@chakra-ui/react";
-import AddIcon from "@/icons/shared/add-icon.svg";
-import MinusIcon from "@/icons/shared/minus-icon.svg";
+import AddIcon from "@/src/ui/icons/add-icon.svg";
+import MinusIcon from "@/src/ui/icons/minus-icon.svg";
 import theme from "@/src/styles/theme";
 import Text from "./Text";
 
@@ -32,7 +31,6 @@ interface CustomAccordionProps extends AccordionProps {
 
 function CustomAccordionItem({
   item,
-  defaultStyle,
   AccordionItemProps,
   AccordionButtonProps,
 }: {
@@ -45,47 +43,32 @@ function CustomAccordionItem({
     <AccordionItem
       w="full"
       border="none"
-      borderBottom="1px solid"
-      borderBottomColor="_lightgray"
-      mt="0px !important"
       {...AccordionItemProps}
+      bg={theme.colors._blue}
+      borderRadius={"3xl"}
+      pos={"relative"}
     >
       {({ isExpanded }) => (
         <>
-          <AccordionButton p={5} {...AccordionButtonProps}>
-            {!defaultStyle && (
-              <Box ml={-2} mr={2} as="span">
-                {isExpanded ? (
-                  <MinusIcon
-                    width="25"
-                    height="25"
-                    stroke={theme.colors._red}
-                  />
-                ) : (
-                  <AddIcon width="25" height="25" stroke={theme.colors._red} />
-                )}
-              </Box>
-            )}
+          <AccordionButton _hover={{}} p={5} {...AccordionButtonProps}>
             {item.title && (
-              <Box
-                fontSize={"md"}
-                flex="1"
-                textAlign="left"
-                fontWeight="medium"
+              <Text
+                fontWeight={"medium"}
+                fontSize={"lg"}
+                color={isExpanded ? "primary" : theme.colors._black}
               >
-                <Text>{item.title}</Text>
-              </Box>
+                {item.title}
+              </Text>
             )}
-            {defaultStyle && (
-              <AccordionIcon
-                fontSize="3xl"
-                mr={{ base: 4, md: 0 }}
-                color="primary"
-              />
+            <Spacer />
+            {isExpanded ? (
+              <MinusIcon width="25" height="25" stroke={theme.colors.primary} />
+            ) : (
+              <AddIcon width="25" height="25" stroke={theme.colors.primary} />
             )}
           </AccordionButton>
-          <AccordionPanel pb={4} pl={defaultStyle ? 0 : 4}>
-            <Text>{item.content}</Text>
+          <AccordionPanel pb={4}>
+            <Text color={theme.colors._gray}>{item.content}</Text>
           </AccordionPanel>
         </>
       )}

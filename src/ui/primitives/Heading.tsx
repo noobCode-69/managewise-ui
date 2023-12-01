@@ -35,19 +35,25 @@ const styles: StyleType = {
     letterSpacing: "-0.03em",
   },
   h1: {
-    fontSize: { base: "2xl", md: "3xl" },
+    fontWeight: { md: "bold", base: "bold" },
+    fontSize: { md: "65px", base: "45" },
+    lineHeight: { base: 1.1 },
     fontFamily: poppins.style.fontFamily,
   },
   h2: {
-    fontSize: { base: "xl", md: "2xl" },
+    fontWeight: "medium",
+    fontSize: { md: "45px", base: "40" },
+    lineHeight: 1.25,
     fontFamily: poppins.style.fontFamily,
   },
   h3: {
-    fontSize: { base: "lg", md: "xl" },
+    fontWeight: "medium",
+    fontSize: { md: "35px", base: "25" },
     fontFamily: poppins.style.fontFamily,
   },
   h4: {
-    fontSize: "lg",
+    fontSize: "20px",
+    fontWeight: "medium",
   },
   h5: {
     fontSize: "md",

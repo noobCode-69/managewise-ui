@@ -1,8 +1,4 @@
-import { HTMLMotionProps, m } from "framer-motion";
+import { motion } from "framer-motion";
+import { chakra } from "@chakra-ui/react";
 
-import { Box } from "@chakra-ui/react";
-import type { BoxProps } from "@chakra-ui/react";
-
-const MotionBox = m<BoxProps & HTMLMotionProps<"div">>(Box);
-
-export { MotionBox };
+export const MotionBox = motion(chakra.div);

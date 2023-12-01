@@ -14,9 +14,9 @@ export default function ResponsizeSizeProvider({
 }: {
   children: ReactNode;
 }) {
-  const [isMobile] = useMediaQuery("(max-width: 50em)");
+  const [isMobile] = useMediaQuery("(max-width: 70em)");
 
-  const [isDesktop] = useMediaQuery("(min-width: 51em)");
+  const [isDesktop] = useMediaQuery("(min-width: 71em)");
 
   return (
     <responsiveSizeContext.Provider value={{ isMobile, isDesktop }}>
