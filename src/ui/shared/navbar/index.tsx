@@ -31,7 +31,6 @@ const Navbar = () => {
   return (
     <Box
       borderBottom={"1px solid"}
-      borderColor={theme.colors._lightgray}
       px={{ md: 10, base: 5 }}
       py={5}
       bg={theme.colors.background}

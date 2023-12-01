@@ -13,10 +13,8 @@ const theme = {
     _white: "#FFFFFF",
     _black: "#1C1C1C",
     _lightblack: "#212121",
-    _darkgray: "#292929",
     _gray: "#636363",
     _lightgray: "#E3E3E3",
-    _lightestgray: "#F7F7F7",
     primaryGradient: {
       start: "#FDF2EC",
       end: "#FFFFFF",
@@ -33,9 +31,7 @@ const theme = {
   breakpoints: {
     md: "70em",
   },
-  shadows: {
-    outline: `0 0 0 2px ${SECONDARY_COLOR}`,
-  },
+  
 };
 
 export { theme };

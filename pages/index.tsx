@@ -168,7 +168,6 @@ const ProductBreakDown = () => {
             <VStack
               maxW={{ base: 550, md: "full" }}
               border={"1px solid"}
-              borderColor={theme.colors._lightgray}
               pb={{ md: 10, base: 5 }}
               borderRadius={"2xl"}
               width={"full"}
@@ -212,7 +211,6 @@ const ProductBreakDown = () => {
                   gap={5}
                   maxW={550}
                   border={"1px solid"}
-                  borderColor={theme.colors._lightgray}
                   pb={{ md: 10, base: 5 }}
                   borderRadius={"2xl"}
                   width={"full"}
