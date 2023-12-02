@@ -5,11 +5,14 @@ import FAQ from "@/src/ui/home/faq";
 import Pricing from "@/src/ui/home/pricing";
 import Footer from "@/src/ui/home/footer";
 import Navbar from "@/src/ui/shared/navbar";
-
+import Head from "next/head";
 import { Box } from "@chakra-ui/react";
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Manage Wise - Sass Product Landing Page</title>
+      </Head>
       <Navbar />
       <Hero />
       <Box id="features">

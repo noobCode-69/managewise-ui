@@ -7,7 +7,7 @@ import {
   DrawerHeader,
   DrawerOverlay,
   DrawerProps,
-  Box,
+  IconButton,
 } from "@chakra-ui/react";
 import LeftArrow from "@/src/ui/icons/left-arrow.svg";
 import theme from "@/src/styles/theme";
@@ -51,8 +51,9 @@ export default function Drawer({
         <DrawerContent maxHeight="100% !important" {...contentStyle}>
           {header && (
             <DrawerHeader pb="2">
-              <Box
-                _hover={{ cursor: "pointer" }}
+              <IconButton
+                aria-label="back-button"
+                bg={"transparent"}
                 padding={2.5}
                 borderRadius={"100%"}
                 border={"1px solid"}
@@ -65,7 +66,7 @@ export default function Drawer({
                   height="13"
                   stroke={theme.colors._black}
                 />
-              </Box>
+              </IconButton>
             </DrawerHeader>
           )}
           <DrawerBody {...rest}>{children}</DrawerBody>
