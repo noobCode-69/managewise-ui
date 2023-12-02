@@ -18,13 +18,13 @@ const HamburgerMenu = ({ isOpen, onClose }: HamburgerMenuProps) => {
       <VStack pt={10} gap={5}>
         {Links.map(({ systemText, value }: LinkType, index) => {
           return (
-            <Link
-              onClick={onClose}
-              styleProps={{ fontWeight: "medium", fontSize: "large" }}
-              key={index}
-              label={systemText}
-              href={`/${value}`}
-            />
+            <Text onClick={onClose} key={index}>
+              <Link
+                styleProps={{ fontWeight: "medium", fontSize: "large" }}
+                label={systemText}
+                href={`/${value}`}
+              />
+            </Text>
           );
         })}
         <Box ml={5}>

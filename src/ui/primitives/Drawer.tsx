@@ -39,7 +39,14 @@ export default function Drawer({
 }: CustomDrawerProps) {
   const { onClose } = rest;
   return (
-    <ChakraDrawer placement={placement} size={size} isOpen={isOpen} {...rest}>
+    <ChakraDrawer
+      autoFocus={false}
+      returnFocusOnClose={false}
+      placement={placement}
+      size={size}
+      isOpen={isOpen}
+      {...rest}
+    >
       <DrawerOverlay h={isBgBlured ? "100vh" : "0"} maxHeight="100% !important">
         <DrawerContent maxHeight="100% !important" {...contentStyle}>
           {header && (
