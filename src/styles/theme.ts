@@ -19,7 +19,8 @@ const theme = {
       start: "#FDF2EC",
       end: "#FFFFFF",
     },
-    circularGradient: "rgba(248, 233, 225, 0.1)",
+    secondaryGradient: "rgba(130, 71, 225, 0.1)",
+    circularGradient: "rgba(248, 233, 225, 0.15)",
   },
   styles: {
     global: {
@@ -31,7 +32,6 @@ const theme = {
   breakpoints: {
     md: "70em",
   },
-  
 };
 
 export { theme };

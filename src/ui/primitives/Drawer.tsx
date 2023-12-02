@@ -49,6 +49,7 @@ export default function Drawer({
                 padding={2.5}
                 borderRadius={"100%"}
                 border={"1px solid"}
+                borderColor={theme.colors._lightgray}
                 onClick={onClose}
                 w="fit-content"
               >

@@ -1,4 +1,4 @@
-import { Box, Flex, HStack } from "@chakra-ui/react";
+import { Box, Flex, HStack, Spacer } from "@chakra-ui/react";
 import theme from "@/src/styles/theme";
 import Button from "@/src/ui/primitives/Button";
 import Heading from "@/src/ui/primitives/Heading";
@@ -8,10 +8,14 @@ import { VStack } from "@chakra-ui/react";
 import Image from "next/image";
 import Navbar from "@/src/ui/shared/navbar";
 import Container from "@/src/ui/primitives/Container";
-import { MouseEvent, useState } from "react";
+import { MouseEvent } from "react";
 import { useMotionTemplate, useMotionValue } from "framer-motion";
 import { MotionBox } from "@/src/ui/primitives/Motion";
 import Accordion from "@/src/ui/primitives/Accordian";
+import Link from "@/src/ui/primitives/Link";
+
+import Links from "@/src/ui/shared/navbar/navbar-data";
+import { LinkType } from "@/src/ui/shared/navbar/navbar-data";
 const Hero = () => {
   return (
     <VStack
@@ -168,6 +172,7 @@ const ProductBreakDown = () => {
             <VStack
               maxW={{ base: 550, md: "full" }}
               border={"1px solid"}
+              borderColor={theme.colors._lightgray}
               pb={{ md: 10, base: 5 }}
               borderRadius={"2xl"}
               width={"full"}
@@ -211,6 +216,7 @@ const ProductBreakDown = () => {
                   gap={5}
                   maxW={550}
                   border={"1px solid"}
+                  borderColor={theme.colors._lightgray}
                   pb={{ md: 10, base: 5 }}
                   borderRadius={"2xl"}
                   width={"full"}
@@ -389,7 +395,7 @@ const Features = () => {
           <Box
             mt={10}
             w={{ md: "70%", base: "full" }}
-            aspectRatio={70 / 30}
+            aspectRatio={70 / 25}
             pos={"relative"}
           >
             <Image
@@ -499,8 +505,17 @@ const Pricing = () => {
     },
   ];
 
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
+
+  const handleMouseMove = ({ clientX, clientY, currentTarget }: MouseEvent) => {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  };
+
   return (
-    <VStack py={10}>
+    <VStack py={{ md: 20, base: 10 }}>
       <Container>
         <VStack gap={8}>
           <Tag>
@@ -535,49 +550,70 @@ const Pricing = () => {
           {pricingData.map(({ label, price, bullets }, index) => {
             const isStandard = label === "Standard";
             return (
-              <VStack
-                maxW={{ base: 550, md: "full" }}
-                p={{ md: 10, base: 5 }}
-                borderRadius={"3xl"}
-                w={"full"}
-                key={index}
-                alignItems={"flex-start"}
-                bg={isStandard ? theme.colors._black : theme.colors._purple}
-              >
-                <Tag>
-                  <Text color={theme.colors.secondary}>{label}</Text>
-                </Tag>
-                <HStack
-                  color={isStandard ? theme.colors._white : theme.colors._black}
-                  alignItems={"flex-end"}
-                  spacing={1}
+              <VStack w={"full"} justifyContent={"center"} key={index}>
+                <VStack
+                  bg={isStandard ? theme.colors._black : theme.colors._purple}
+                  borderRadius={"3xl"}
+                  p={10}
+                  maxW={{ base: 550, md: "full" }}
+                  alignItems={"flex-start"}
+                  w={"full"}
+                  onMouseMove={handleMouseMove}
+                  overflow={"hidden"}
+                  pos={"relative"}
+                  role="group"
                 >
-                  <Heading asStyle="h2">{price}</Heading>
-                  <Text>/month</Text>
-                </HStack>
-                <VStack py={5} alignItems={"flex-start"} w={"full"}>
-                  {bullets.map((bulletItem) => {
-                    return (
-                      <Text
-                        key={bulletItem}
-                        fontWeight={"medium"}
-                        color={theme.colors._gray}
-                      >
-                        <Text as="span" color={"green"}>
-                          ✔
-                        </Text>{" "}
-                        {bulletItem}
-                      </Text>
-                    );
-                  })}
+                  <MotionBox
+                    _groupHover={{ opacity: 100 }}
+                    pos={"absolute"}
+                    pointerEvents={"none"}
+                    opacity={0}
+                    inset={0}
+                    style={{
+                      background: useMotionTemplate`radial-gradient(400px circle at ${mouseX}px ${mouseY}px, ${
+                        isStandard
+                          ? theme.colors.circularGradient
+                          : theme.colors.secondaryGradient
+                      }, transparent 80%)`,
+                    }}
+                  />
+                  <Tag>
+                    <Text color={theme.colors.secondary}>{label}</Text>
+                  </Tag>
+                  <HStack
+                    color={
+                      isStandard ? theme.colors._white : theme.colors._black
+                    }
+                    alignItems={"flex-end"}
+                    spacing={1}
+                  >
+                    <Heading asStyle="h2">{price}</Heading>
+                    <Text>/month</Text>
+                  </HStack>
+                  <VStack py={5} alignItems={"flex-start"} w={"full"}>
+                    {bullets.map((bulletItem) => {
+                      return (
+                        <Text
+                          key={bulletItem}
+                          fontWeight={"medium"}
+                          color={theme.colors._gray}
+                        >
+                          <Text as="span" color={"green"}>
+                            ✔
+                          </Text>{" "}
+                          {bulletItem}
+                        </Text>
+                      );
+                    })}
+                  </VStack>
+                  <Button
+                    mt={"auto"}
+                    secondary={!isStandard}
+                    primary={isStandard}
+                  >
+                    <Text>Get Started</Text>
+                  </Button>
                 </VStack>
-                <Button
-                  mt={"auto"}
-                  secondary={!isStandard}
-                  primary={isStandard}
-                >
-                  <Text>Get Started</Text>
-                </Button>
               </VStack>
             );
           })}
@@ -587,37 +623,94 @@ const Pricing = () => {
   );
 };
 
-const Testimonials = () => {
+const Footer = () => {
   return (
-    <VStack py={{ md: 20, base: 10 }}>
+    <VStack
+      bgGradient={`linear(to-t, ${theme.colors.primaryGradient.start}, ${theme.colors.primaryGradient.end})`}
+      py={{ md: 20, base: 10 }}
+      gap={0}
+    >
       <Container>
-        <VStack gap={5} alignItems={"flex-start"}>
-          <Tag>
-            <Text>🧡 Testimonials</Text>
-          </Tag>
-          <Heading asStyle="h2">
-            Hear from our{" "}
-            <Text as="span" color={theme.colors.secondary}>
-              Satisfied
-            </Text>{" "}
-            clients
-          </Heading>
-          <Text
-            fontSize={"lg"}
-            fontWeight={"medium"}
-            color={theme.colors._gray}
-            maxW={"50ch"}
-          >
-            Discover why our clients love working with us. Read their
-            testimonials and learn how we has helped businesses.{" "}
-          </Text>
-        </VStack>
+        <Flex
+          border={"1px solid"}
+          borderColor={theme.colors._lightgray}
+          direction={{ md: "row", base: "column" }}
+          alignItems={{ md: "stretch", base: "center" }}
+          justifyContent={"center"}
+          gap={10}
+          py={{ md: 40, base: 20 }}
+          px={{ md: 20, base: 10 }}
+          bg={theme.colors._white}
+          borderRadius={"3xl"}
+        >
+          <VStack alignItems={{ md: "flex-start", base: "center" }} w={"full"}>
+            <Tag>
+              <Text>👋 Don&apos;miss out</Text>
+            </Tag>
+            <Heading textAlign={"left"} asStyle="h2">
+              Unleash your Need{" "}
+              <Text as="span" color={"secondary"}>
+                Potential
+              </Text>{" "}
+              with us
+            </Heading>
+            <Text
+              fontSize={"lg"}
+              fontWeight={"medium"}
+              color={theme.colors._gray}
+              maxW={"30ch"}
+              textAlign={{ md: "left", base: "center" }}
+            >
+              Join our community of ambitious individuals and organizations
+              eager to make a difference.
+            </Text>
+            <Button mt={{ md: 10, base: 5 }} primary size={"lg"}>
+              <Text>Try Out Now</Text>
+            </Button>
+          </VStack>
+          <VStack justifyContent={"center"} w={"full"}>
+            <Box alignItems={"center"} w={"full"}>
+              <Box
+                aspectRatio={{ md: 70 / 35, base: 70 / 25 }}
+                pos={"relative"}
+              >
+                <Image
+                  layout="fill"
+                  objectFit="contain"
+                  alt="happy-faces"
+                  src={"/happy-face.webp"}
+                />
+              </Box>
+            </Box>
+          </VStack>
+        </Flex>
+        <Flex
+          padding={20}
+          justifyContent={"center"}
+          alignItems={"center"}
+          width={"full"}
+          flexDir={{ base: "column", md: "row" }}
+          gap={5}
+        >
+          <Box>
+            <Image
+              src={"/logo.png"}
+              alt="website-logo"
+              width={175}
+              height={50}
+            />
+          </Box>
+          <Spacer />
+          <VStack alignItems={{md : "flex-start" ,base : 'center'}}>
+            {Links.map(({ systemText, value }: LinkType, index) => {
+              return <Link key={index} label={systemText} href={`/${value}`} />;
+            })}
+          </VStack>
+        </Flex>{" "}
       </Container>
-      <Container maxW={{base : '150ch'}}></Container>
     </VStack>
   );
 };
-
 export default function Home() {
   return (
     <>
@@ -627,7 +720,7 @@ export default function Home() {
       <Features />
       <FAQ />
       <Pricing />
-      <Testimonials />
+      <Footer />
     </>
   );
 }
