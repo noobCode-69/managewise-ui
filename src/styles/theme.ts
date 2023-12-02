@@ -7,7 +7,6 @@ const theme = {
     primary: PRIMARY_COLOR,
     secondary: SECONDARY_COLOR,
     background: "#FDF2EC",
-
     _purple: "#EDEDFA",
     _blue: "#f7f8fd",
     _white: "#FFFFFF",
@@ -19,6 +18,7 @@ const theme = {
       start: "#FDF2EC",
       end: "#FFFFFF",
     },
+    boxShadow: "rgba(130, 71, 255  ,0.2)",
     secondaryGradient: "rgba(130, 71, 225, 0.1)",
     circularGradient: "rgba(248, 233, 225, 0.15)",
   },
@@ -29,6 +29,10 @@ const theme = {
       },
     },
   },
+  shadows: {
+    outline: `0 0 0 2px ${PRIMARY_COLOR}`,
+  },
+
   breakpoints: {
     md: "70em",
   },

@@ -1,3 +1,4 @@
+import theme from "@/src/styles/theme";
 import {
   forwardRef,
   ButtonProps,
@@ -22,11 +23,12 @@ const Button = forwardRef<CustomButtonProps, "button">(
     const styles: StyleType = {
       default: {},
       primary: {
+        transition: "0.1s all",
         bg: "primary",
         color: "_white",
-        variant: "solid",
         _hover: {
           filter: "brightness(105%)",
+          boxShadow: `0 0 0 6px ${theme.colors.boxShadow}`,
         },
         _active: {
           filter: "brightness(102%)",
