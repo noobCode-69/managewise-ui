@@ -8,7 +8,7 @@ import { VStack } from "@chakra-ui/react";
 import Container from "@/src/ui/primitives/Container";
 import { MouseEvent } from "react";
 import { useMotionTemplate, useMotionValue } from "framer-motion";
-import { MotionBox } from "@/src/ui/primitives/Motion";
+import { MotionBox, MotionVStack } from "@/src/ui/primitives/Motion";
 
 const pricingData: { label: string; price: string; bullets: string[] }[] = [
   {
@@ -92,7 +92,15 @@ const Pricing = () => {
           {pricingData.map(({ label, price, bullets }, index) => {
             const isStandard = label === "Standard";
             return (
-              <VStack w={"full"} justifyContent={"center"} key={index}>
+              <MotionVStack
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.25, delay: index * 0.25 }}
+                w={"full"}
+                justifyContent={"center"}
+                key={index}
+              >
                 <VStack
                   bg={isStandard ? theme.colors._black : theme.colors._purple}
                   borderRadius={"3xl"}
@@ -156,7 +164,7 @@ const Pricing = () => {
                     <Text>Get Started</Text>
                   </Button>
                 </VStack>
-              </VStack>
+              </MotionVStack>
             );
           })}
         </Flex>

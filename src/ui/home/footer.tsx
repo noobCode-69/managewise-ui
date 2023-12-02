@@ -11,6 +11,7 @@ import Link from "@/src/ui/primitives/Link";
 
 import Links from "@/src/ui/shared/navbar/navbar-data";
 import { LinkType } from "@/src/ui/shared/navbar/navbar-data";
+import { MotionFlex } from "../primitives/Motion";
 
 const Footer = () => {
   return (
@@ -20,7 +21,10 @@ const Footer = () => {
       gap={0}
     >
       <Container>
-        <Flex
+        <MotionFlex
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
           border={"1px solid"}
           borderColor={theme.colors._lightgray}
           direction={{ md: "row", base: "column" }}
@@ -72,7 +76,7 @@ const Footer = () => {
               </Box>
             </Box>
           </VStack>
-        </Flex>
+        </MotionFlex>
         <Flex
           padding={20}
           justifyContent={"center"}

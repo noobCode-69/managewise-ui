@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import theme from "@/src/styles/theme";
 import Button from "@/src/ui/primitives/Button";
 import Heading from "@/src/ui/primitives/Heading";
@@ -7,15 +7,22 @@ import Text from "@/src/ui/primitives/Text";
 import { VStack } from "@chakra-ui/react";
 import Image from "next/image";
 import Container from "@/src/ui/primitives/Container";
+
+import { MotionBox, MotionVStack } from "../primitives/Motion";
 const Hero = () => {
   return (
     <VStack
       bgGradient={`linear(to-b, ${theme.colors.primaryGradient.start}, ${theme.colors.primaryGradient.end})`}
       pt={20}
-      gap={10}
+      gap={5}
     >
       <Container>
-        <VStack gap={8}>
+        <MotionVStack
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          gap={8}
+        >
           <Tag>
             <Text>👋 Welcome to Manage Wise!</Text>
           </Tag>
@@ -41,7 +48,6 @@ const Hero = () => {
             Powerful management platform designed to streamline your business
             operations, boost productivity, and drive success
           </Text>
-
           <Flex
             justifyContent={"center"}
             alignItems={"center"}
@@ -66,18 +72,25 @@ const Hero = () => {
               <Text>Watch Demo</Text>
             </Button>
           </Flex>
-        </VStack>
+        </MotionVStack>
       </Container>
 
       <Container maxW={{ md: "160ch" }}>
-        <Box aspectRatio={70 / 45} pos={"relative"} mt={5}>
+        <MotionBox
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          aspectRatio={70 / 45}
+          pos={"relative"}
+          mt={5}
+        >
           <Image
             layout="fill"
             objectFit="contain"
             alt="hero-banner"
             src={"/hero-banner.webp"}
           />
-        </Box>
+        </MotionBox>
       </Container>
     </VStack>
   );

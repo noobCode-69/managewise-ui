@@ -6,6 +6,7 @@ import Text from "@/src/ui/primitives/Text";
 import { VStack } from "@chakra-ui/react";
 import Image from "next/image";
 import Container from "@/src/ui/primitives/Container";
+import { MotionVStack } from "../primitives/Motion";
 
 const featuresData: {
   poster: string;
@@ -65,7 +66,11 @@ const ProductBreakDown = () => {
             justifyContent={"center"}
             gap={10}
           >
-            <VStack
+            <MotionVStack
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.25, delay: 0.25 }}
               maxW={{ base: 550, md: "full" }}
               width={"full"}
               bg={theme.colors._purple}
@@ -83,8 +88,12 @@ const ProductBreakDown = () => {
                 Boost productivity and streamline workflow with us. Enjoy our
                 intuitive interface and robust features.
               </Heading>
-            </VStack>
-            <VStack
+            </MotionVStack>
+            <MotionVStack
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.25, delay: 0.5 }}
               maxW={{ base: 550, md: "full" }}
               border={"1px solid"}
               borderColor={theme.colors._lightgray}
@@ -113,7 +122,7 @@ const ProductBreakDown = () => {
                   Say goodbye to chaos with our smart task management system
                 </Text>
               </VStack>
-            </VStack>
+            </MotionVStack>
           </Flex>
         </Container>
 
@@ -126,7 +135,11 @@ const ProductBreakDown = () => {
           >
             {featuresData.map(({ poster, heading, subheading }, index) => {
               return (
-                <VStack
+                <MotionVStack
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ duration: 0.25, delay: index * 0.25 }}
                   key={index}
                   gap={5}
                   maxW={550}
@@ -156,7 +169,7 @@ const ProductBreakDown = () => {
                       {subheading}
                     </Text>
                   </VStack>
-                </VStack>
+                </MotionVStack>
               );
             })}
           </Flex>
