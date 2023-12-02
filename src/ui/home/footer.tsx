@@ -23,8 +23,10 @@ const Footer = () => {
       <Container>
         <MotionFlex
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
+          // animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.6 }}
           border={"1px solid"}
           borderColor={theme.colors._lightgray}
           direction={{ md: "row", base: "column" }}
