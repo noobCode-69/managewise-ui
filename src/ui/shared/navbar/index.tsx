@@ -1,11 +1,8 @@
 import {
   Box,
-  Divider,
   HStack,
-  Icon,
   IconButton,
   Spacer,
-  VStack,
   useDisclosure,
 } from "@chakra-ui/react";
 import { theme } from "@/src/styles/theme";
@@ -18,7 +15,10 @@ import { LinkType } from "./navbar-data";
 import Link from "../../primitives/Link";
 import { useResponsiveSizes } from "@/src/context/responsive";
 import HamburgerMenuIcon from "@/src/ui/icons/hamburger-menu.svg";
-import Drawer from "../../primitives/Drawer";
+import dynamic from "next/dynamic";
+
+const DynamicHamburgerMenu = dynamic(() => import("./hamburger-menu"));
+
 const Navbar = () => {
   const { isMobile } = useResponsiveSizes();
 
@@ -71,32 +71,12 @@ const Navbar = () => {
             icon={<HamburgerMenuIcon width={25} />}
           />
         )}
-
-        <Drawer
-          size={"xs"}
-          isOpen={isOpenHamburgerMenu}
-          onClose={onCloseHamburgerMenu}
-        >
-          <Divider />
-          <VStack pt={10} gap={5}>
-            {Links.map(({ systemText, value }: LinkType, index) => {
-              return (
-                <Link
-                  styleProps={{ fontWeight: "medium", fontSize: "large" }}
-                  key={index}
-                  label={systemText}
-                  href={`/${value}`}
-                />
-              );
-            })}
-            <Box ml={5}>
-              <Button primary>
-                <Text>Buy Template</Text>
-              </Button>
-            </Box>
-          </VStack>
-        </Drawer>
       </HStack>
+
+      <DynamicHamburgerMenu
+        isOpen={isOpenHamburgerMenu}
+        onClose={onCloseHamburgerMenu}
+      />
     </Box>
   );
 };
