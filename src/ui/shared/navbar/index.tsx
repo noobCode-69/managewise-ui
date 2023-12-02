@@ -20,7 +20,7 @@ import dynamic from "next/dynamic";
 const DynamicHamburgerMenu = dynamic(() => import("./hamburger-menu"));
 
 const Navbar = () => {
-  const { isMobile } = useResponsiveSizes();
+  const { isMobile, isDesktop } = useResponsiveSizes();
 
   const {
     isOpen: isOpenHamburgerMenu,
@@ -41,7 +41,7 @@ const Navbar = () => {
           <Image src={"/logo.png"} alt="website-logo" width={175} height={50} />
         </Box>
         <Spacer />
-        {!isMobile && (
+        {isDesktop && (
           <HStack gap={5}>
             {Links.map(({ systemText, value }: LinkType, index) => {
               return (

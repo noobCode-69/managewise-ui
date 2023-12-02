@@ -6,8 +6,10 @@ type responsiveSizeContextType = {
   isMobile: boolean;
   isDesktop: boolean;
 };
-export const responsiveSizeContext =
-  createContext<responsiveSizeContextType | null>(null);
+export const responsiveSizeContext = createContext<responsiveSizeContextType>({
+  isMobile: false,
+  isDesktop: false,
+});
 
 export default function ResponsizeSizeProvider({
   children,
@@ -26,10 +28,7 @@ export default function ResponsizeSizeProvider({
 }
 
 export function useResponsiveSizes() {
-  const ctx = useContext(responsiveSizeContext);
-  // Should use inside the context provider
-  if (!ctx) return;
-  const { isMobile, isDesktop } = ctx;
+  const { isMobile, isDesktop } = useContext(responsiveSizeContext);
   return {
     isMobile,
     isDesktop,
