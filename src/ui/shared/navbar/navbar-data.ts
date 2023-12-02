@@ -16,10 +16,6 @@ const Links: LinkType[] = [
     systemText: "Pricing",
     value: "#pricing",
   },
-  {
-    systemText: "Testimonials",
-    value: "#testimonials",
-  },
 ];
 
-export default Links
+export default Links;
